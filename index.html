@@ -1,0 +1,1564 @@
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>القلعة | AL QALAA - الرخام والجرانيت</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            charcoal: '#202020',
+            ivory: '#F5F1E9',
+            'stone-gray': '#888780',
+            'antique-gold': '#B69A62',
+            'gold-light': '#D4B87A',
+            'gold-dark': '#8B7340',
+            'deep-black': '#151515',
+          },
+          fontFamily: {
+            arabic: ['Tajawal', 'sans-serif'],
+            accent: ['Cormorant Garamond', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --charcoal: #202020;
+      --ivory: #F5F1E9;
+      --stone-gray: #888780;
+      --antique-gold: #B69A62;
+      --gold-light: #D4B87A;
+      --gold-dark: #8B7340;
+      --deep-black: #151515;
+    }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { font-family: 'Tajawal', sans-serif; background: var(--ivory); color: var(--charcoal); overflow-x: hidden; }
+    body.en { direction: ltr; text-align: left; }
+
+    /* Preloader */
+    #preloader {
+      position: fixed; inset: 0; z-index: 9999;
+      background: var(--charcoal);
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #preloader.hidden { opacity: 0; visibility: hidden; }
+    .loader-diamond {
+      width: 50px; height: 50px;
+      background: var(--antique-gold);
+      transform: rotate(45deg);
+      animation: loaderPulse 1.2s ease-in-out infinite;
+    }
+    @keyframes loaderPulse {
+      0%, 100% { transform: rotate(45deg) scale(1); opacity: 1; }
+      50% { transform: rotate(45deg) scale(1.3); opacity: 0.6; }
+    }
+
+    /* Skip Link */
+    .skip-link {
+      position: absolute; top: -100%; right: 0;
+      background: var(--antique-gold); color: var(--charcoal);
+      padding: 8px 16px; z-index: 10000; font-weight: 700;
+      transition: top 0.3s;
+    }
+    .skip-link:focus { top: 0; }
+
+    /* Navigation */
+    .main-nav {
+      position: fixed; top: 0; right: 0; left: 0; z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.4s ease;
+      background: transparent;
+    }
+    .main-nav.scrolled {
+      background: rgba(32, 32, 32, 0.97);
+      backdrop-filter: blur(20px);
+      padding: 10px 0;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.3);
+    }
+    .nav-link {
+      position: relative; color: var(--ivory);
+      font-weight: 500; font-size: 0.95rem;
+      padding: 6px 0; transition: color 0.3s;
+    }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: 0; right: 0;
+      width: 0; height: 2px; background: var(--antique-gold);
+      transition: width 0.3s ease;
+    }
+    [dir="ltr"] .nav-link::after { right: auto; left: 0; }
+    .nav-link:hover, .nav-link.active { color: var(--antique-gold); }
+    .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed; top: 0; right: -100%; width: 85%; max-width: 380px;
+      height: 100vh; background: var(--deep-black);
+      z-index: 1100; transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 100px 40px 40px; overflow-y: auto;
+    }
+    [dir="ltr"] .mobile-menu { right: auto; left: -100%; }
+    .mobile-menu.open { right: 0; }
+    [dir="ltr"] .mobile-menu.open { left: 0; }
+    .mobile-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.6);
+      z-index: 1050; opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .mobile-overlay.visible { opacity: 1; visibility: visible; }
+    .mobile-nav-link {
+      display: block; color: var(--ivory); font-size: 1.2rem;
+      padding: 14px 0; border-bottom: 1px solid rgba(245,241,233,0.1);
+      transition: color 0.3s, padding-right 0.3s;
+    }
+    [dir="ltr"] .mobile-nav-link { transition: color 0.3s, padding-left 0.3s; }
+    .mobile-nav-link:hover { color: var(--antique-gold); padding-right: 12px; }
+    [dir="ltr"] .mobile-nav-link:hover { padding-right: 0; padding-left: 12px; }
+
+    /* Hero */
+    .hero-section {
+      min-height: 100vh; position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://picsum.photos/seed/marble-luxury-4/1920/1080') center/cover no-repeat;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(21,21,21,0.92) 0%, rgba(32,32,32,0.85) 40%, rgba(32,32,32,0.7) 100%);
+    }
+    .hero-pattern {
+      position: absolute; inset: 0; opacity: 0.03;
+      background-image:
+        repeating-linear-gradient(45deg, var(--antique-gold) 0, var(--antique-gold) 1px, transparent 0, transparent 50%),
+        repeating-linear-gradient(-45deg, var(--antique-gold) 0, var(--antique-gold) 1px, transparent 0, transparent 50%);
+      background-size: 60px 60px;
+    }
+    .hero-gold-line {
+      position: absolute; top: 0; right: 8%; width: 1px; height: 100%;
+      background: linear-gradient(to bottom, transparent, var(--antique-gold), transparent);
+      opacity: 0.2;
+    }
+    [dir="ltr"] .hero-gold-line { right: auto; left: 8%; }
+    .hero-gold-line:nth-child(2) { right: 92%; }
+    [dir="ltr"] .hero-gold-line:nth-child(2) { right: auto; left: 92%; }
+    .hero-diamond {
+      position: absolute; width: 120px; height: 120px;
+      border: 1px solid rgba(182,154,98,0.15);
+      transform: rotate(45deg);
+    }
+
+    /* Section Decorations */
+    .section-heading { position: relative; display: inline-block; }
+    .section-heading::after {
+      content: ''; display: block; width: 60px; height: 3px;
+      background: var(--antique-gold); margin-top: 16px;
+      margin-right: auto; margin-left: 0;
+    }
+    [dir="ltr"] .section-heading::after { margin-right: 0; margin-left: auto; }
+    .section-heading.centered::after { margin-right: auto; margin-left: auto; }
+
+    /* Fortress Pattern */
+    .fortress-pattern {
+      position: relative;
+    }
+    .fortress-pattern::before {
+      content: ''; position: absolute; inset: 0; opacity: 0.02; pointer-events: none;
+      background-image:
+        linear-gradient(30deg, var(--antique-gold) 12%, transparent 12.5%, transparent 87%, var(--antique-gold) 87.5%),
+        linear-gradient(150deg, var(--antique-gold) 12%, transparent 12.5%, transparent 87%, var(--antique-gold) 87.5%),
+        linear-gradient(30deg, var(--antique-gold) 12%, transparent 12.5%, transparent 87%, var(--antique-gold) 87.5%),
+        linear-gradient(150deg, var(--antique-gold) 12%, transparent 12.5%, transparent 87%, var(--antique-gold) 87.5%);
+      background-size: 80px 140px;
+      background-position: 0 0, 0 0, 40px 70px, 40px 70px;
+    }
+
+    /* Cards */
+    .stone-card {
+      background: white; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 1px solid rgba(136,135,128,0.1);
+    }
+    .stone-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    }
+    .stone-card .card-img {
+      overflow: hidden; height: 220px;
+    }
+    .stone-card .card-img img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .stone-card:hover .card-img img { transform: scale(1.1); }
+
+    .project-card {
+      position: relative; border-radius: 12px; overflow: hidden;
+      cursor: pointer; aspect-ratio: 4/3;
+    }
+    .project-card img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .project-card:hover img { transform: scale(1.1); }
+    .project-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(21,21,21,0.9) 0%, rgba(21,21,21,0.3) 50%, transparent 100%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 24px; transition: background 0.4s;
+    }
+    .project-card:hover .project-overlay {
+      background: linear-gradient(to top, rgba(21,21,21,0.95) 0%, rgba(21,21,21,0.5) 60%, rgba(21,21,21,0.2) 100%);
+    }
+
+    .service-card {
+      background: white; border-radius: 12px; padding: 36px 28px;
+      border: 1px solid rgba(136,135,128,0.15);
+      transition: all 0.4s ease; position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; right: 0;
+      width: 4px; height: 0; background: var(--antique-gold);
+      transition: height 0.4s ease;
+    }
+    [dir="ltr"] .service-card::before { right: auto; left: 0; }
+    .service-card:hover::before { height: 100%; }
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+      border-color: rgba(182,154,98,0.3);
+    }
+
+    /* Filter Buttons */
+    .filter-btn {
+      padding: 8px 20px; border-radius: 50px; font-size: 0.9rem;
+      font-weight: 500; cursor: pointer; transition: all 0.3s;
+      border: 1px solid rgba(136,135,128,0.3);
+      background: transparent; color: var(--stone-gray);
+    }
+    .filter-btn:hover { border-color: var(--antique-gold); color: var(--antique-gold); }
+    .filter-btn.active {
+      background: var(--antique-gold); color: white;
+      border-color: var(--antique-gold);
+    }
+
+    /* Calculator */
+    .calc-container {
+      background: var(--charcoal); border-radius: 20px;
+      padding: 28px; max-width: 380px; margin: 0 auto;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+      border: 1px solid rgba(182,154,98,0.15);
+    }
+    .calc-display {
+      background: rgba(245,241,233,0.06);
+      border: 1px solid rgba(182,154,98,0.1);
+      border-radius: 14px; padding: 20px 24px;
+      margin-bottom: 20px; text-align: left;
+      direction: ltr; min-height: 90px;
+      display: flex; flex-direction: column; justify-content: flex-end;
+    }
+    .calc-prev {
+      font-size: 0.9rem; color: var(--stone-gray);
+      min-height: 24px; margin-bottom: 4px;
+    }
+    .calc-current {
+      font-size: 2.4rem; font-weight: 300; color: var(--ivory);
+      word-break: break-all; line-height: 1.2;
+    }
+    .calc-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .calc-btn {
+      padding: 18px 0; border-radius: 12px; font-size: 1.3rem;
+      font-weight: 500; cursor: pointer; transition: all 0.2s;
+      border: none; font-family: 'Tajawal', sans-serif;
+      background: rgba(245,241,233,0.08); color: var(--ivory);
+    }
+    .calc-btn:hover { background: rgba(245,241,233,0.14); transform: scale(1.04); }
+    .calc-btn:active { transform: scale(0.97); }
+    .calc-btn.op {
+      background: rgba(182,154,98,0.2); color: var(--antique-gold);
+    }
+    .calc-btn.op:hover { background: rgba(182,154,98,0.35); }
+    .calc-btn.op.active-op {
+      background: var(--antique-gold); color: var(--charcoal);
+    }
+    .calc-btn.clear { background: rgba(200,80,80,0.2); color: #e88; }
+    .calc-btn.clear:hover { background: rgba(200,80,80,0.35); }
+    .calc-btn.equals {
+      background: var(--antique-gold); color: var(--charcoal);
+      font-weight: 700;
+    }
+    .calc-btn.equals:hover { background: var(--gold-light); }
+    .calc-btn.wide { grid-column: span 2; }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.revealed { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Gallery Grid Animation */
+    .gallery-item {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .gallery-item.hidden-item {
+      opacity: 0; transform: scale(0.8);
+      position: absolute; pointer-events: none;
+    }
+
+    /* Back to Top */
+    .back-to-top {
+      position: fixed; bottom: 30px; left: 30px;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--antique-gold); color: var(--charcoal);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 900; opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+      cursor: pointer; border: none; font-size: 1.2rem;
+      box-shadow: 0 4px 20px rgba(182,154,98,0.4);
+    }
+    [dir="ltr"] .back-to-top { left: auto; right: 30px; }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover { transform: translateY(-4px); }
+
+    /* CTA Buttons */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px; background: var(--antique-gold);
+      color: var(--charcoal); font-weight: 700; font-size: 1.05rem;
+      border-radius: 8px; transition: all 0.3s; border: 2px solid var(--antique-gold);
+      text-decoration: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(182,154,98,0.3); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 32px; background: transparent;
+      color: var(--ivory); font-weight: 700; font-size: 1.05rem;
+      border-radius: 8px; transition: all 0.3s; border: 2px solid rgba(245,241,233,0.3);
+      text-decoration: none; cursor: pointer;
+    }
+    .btn-secondary:hover { border-color: var(--antique-gold); color: var(--antique-gold); transform: translateY(-2px); }
+
+    /* Contact Icons */
+    .contact-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 20px; border-radius: 12px;
+      background: rgba(245,241,233,0.04);
+      border: 1px solid rgba(245,241,233,0.06);
+      transition: all 0.3s;
+    }
+    .contact-item:hover {
+      background: rgba(245,241,233,0.08);
+      border-color: rgba(182,154,98,0.2);
+    }
+    .contact-icon {
+      width: 48px; height: 48px; border-radius: 10px;
+      background: rgba(182,154,98,0.15); color: var(--antique-gold);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+
+    /* Scroll Indicator */
+    .scroll-indicator {
+      position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      color: rgba(245,241,233,0.4); font-size: 0.8rem;
+    }
+    .scroll-mouse {
+      width: 24px; height: 38px; border: 2px solid rgba(245,241,233,0.3);
+      border-radius: 12px; position: relative;
+    }
+    .scroll-mouse::after {
+      content: ''; position: absolute; top: 8px; left: 50%;
+      transform: translateX(-50%); width: 3px; height: 8px;
+      background: var(--antique-gold); border-radius: 3px;
+      animation: scrollDown 1.5s ease-in-out infinite;
+    }
+    @keyframes scrollDown {
+      0% { opacity: 1; transform: translateX(-50%) translateY(0); }
+      100% { opacity: 0; transform: translateX(-50%) translateY(14px); }
+    }
+
+    /* Lang Toggle */
+    .lang-toggle {
+      padding: 6px 14px; border-radius: 6px; font-size: 0.8rem;
+      font-weight: 700; cursor: pointer;
+      background: rgba(182,154,98,0.15); color: var(--antique-gold);
+      border: 1px solid rgba(182,154,98,0.3); transition: all 0.3s;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .lang-toggle:hover { background: var(--antique-gold); color: var(--charcoal); }
+
+    /* Search */
+    .search-input {
+      width: 100%; padding: 14px 20px 14px 48px;
+      border: 1px solid rgba(136,135,128,0.25); border-radius: 12px;
+      background: white; font-size: 1rem; font-family: 'Tajawal', sans-serif;
+      color: var(--charcoal); transition: all 0.3s;
+    }
+    [dir="rtl"] .search-input { padding: 14px 48px 14px 20px; }
+    .search-input:focus { outline: none; border-color: var(--antique-gold); box-shadow: 0 0 0 3px rgba(182,154,98,0.1); }
+    .search-wrapper { position: relative; }
+    .search-icon {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      color: var(--stone-gray); font-size: 1rem; pointer-events: none;
+    }
+    [dir="rtl"] .search-icon { left: auto; right: 18px; }
+    [dir="ltr"] .search-icon { left: 18px; right: auto; }
+
+    /* Spec Badge */
+    .spec-badge {
+      display: inline-block; padding: 4px 10px;
+      background: rgba(182,154,98,0.1); color: var(--gold-dark);
+      border-radius: 6px; font-size: 0.75rem; font-weight: 500;
+    }
+
+    /* Type Badge */
+    .type-marble { background: rgba(182,154,98,0.15); color: var(--gold-dark); }
+    .type-granite { background: rgba(136,135,128,0.15); color: var(--stone-gray); }
+
+    /* Focus Visible */
+    :focus-visible {
+      outline: 2px solid var(--antique-gold);
+      outline-offset: 2px;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--charcoal); }
+    ::-webkit-scrollbar-thumb { background: var(--antique-gold); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+
+    /* No Results */
+    .no-results {
+      text-align: center; padding: 60px 20px;
+      color: var(--stone-gray); font-size: 1.1rem;
+    }
+
+    /* Reduced Motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .calc-container { padding: 20px; }
+      .calc-current { font-size: 1.8rem; }
+      .calc-btn { padding: 15px 0; font-size: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader" aria-hidden="true">
+    <div class="loader-diamond"></div>
+  </div>
+
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">تخطي إلى المحتوى الرئيسي</a>
+
+  <!-- Navigation -->
+  <nav class="main-nav" role="navigation" aria-label="التنقل الرئيسي">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <!-- Brand -->
+      <a href="#hero" class="flex items-center gap-3 text-ivory no-underline" aria-label="القلعة - الصفحة الرئيسية">
+        <div class="w-10 h-10 border-2 border-antique-gold flex items-center justify-center transform rotate-45">
+          <span class="transform -rotate-45 text-antique-gold font-accent text-lg font-bold">Q</span>
+        </div>
+        <div>
+          <span class="text-xl font-bold tracking-wide">القلعة</span>
+          <span class="block text-[0.6rem] text-antique-gold font-accent tracking-[0.3em] -mt-1">AL QALAA</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#gallery" class="nav-link" data-ar="معرض الأحجار" data-en="Stone Gallery">معرض الأحجار</a>
+        <a href="#projects" class="nav-link" data-ar="مشاريعنا" data-en="Projects">مشاريعنا</a>
+        <a href="#workshop" class="nav-link" data-ar="الورشة" data-en="Workshop">الورشة</a>
+        <a href="#calculator" class="nav-link" data-ar="الحاسبة" data-en="Calculator">الحاسبة</a>
+        <a href="#about" class="nav-link" data-ar="من نحن" data-en="About">من نحن</a>
+        <a href="#contact" class="nav-link" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+      </div>
+
+      <!-- Lang Toggle + Mobile Menu Button -->
+      <div class="flex items-center gap-3">
+        <button class="lang-toggle" id="langToggle" aria-label="تبديل اللغة">EN</button>
+        <button class="lg:hidden text-ivory text-2xl p-2" id="menuBtn" aria-label="فتح القائمة" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="القائمة الجانبية">
+    <button class="absolute top-6 left-6 text-ivory text-2xl" id="closeMenuBtn" aria-label="إغلاق القائمة">
+      <i class="fas fa-times"></i>
+    </button>
+    <a href="#gallery" class="mobile-nav-link" data-ar="معرض الأحجار" data-en="Stone Gallery">معرض الأحجار</a>
+    <a href="#projects" class="mobile-nav-link" data-ar="مشاريعنا" data-en="Projects">مشاريعنا</a>
+    <a href="#workshop" class="mobile-nav-link" data-ar="الورشة" data-en="Workshop">الورشة</a>
+    <a href="#calculator" class="mobile-nav-link" data-ar="الحاسبة" data-en="Calculator">الحاسبة</a>
+    <a href="#about" class="mobile-nav-link" data-ar="من نحن" data-en="About">من نحن</a>
+    <a href="#contact" class="mobile-nav-link" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+    <div class="mt-8 pt-6 border-t border-ivory/10">
+      <button class="lang-toggle w-full text-center" id="langToggleMobile">EN</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main id="main-content">
+
+    <!-- ========== HERO ========== -->
+    <section id="hero" class="hero-section">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-pattern" aria-hidden="true"></div>
+      <div class="hero-gold-line" aria-hidden="true"></div>
+      <div class="hero-gold-line" style="right:92%" aria-hidden="true"></div>
+      <div class="hero-diamond" style="top:15%;right:5%" aria-hidden="true"></div>
+      <div class="hero-diamond" style="bottom:20%;left:3%;width:80px;height:80px" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+        <div class="max-w-3xl">
+          <div class="reveal flex items-center gap-3 mb-6">
+            <div class="w-12 h-[2px] bg-antique-gold"></div>
+            <span class="text-antique-gold font-accent text-sm tracking-[0.3em]" data-ar="الرخام والجرانيت الفاخر" data-en="Premium Marble & Granite">الرخام والجرانيت الفاخر</span>
+          </div>
+          <h1 class="reveal reveal-delay-1 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-ivory leading-tight mb-6" data-ar="نصنع الفخامة من قلب الحجر" data-en="Crafting Luxury from the Heart of Stone">
+            نصنع الفخامة<br>من قلب الحجر
+          </h1>
+          <p class="reveal reveal-delay-2 text-lg sm:text-xl text-ivory/70 leading-relaxed mb-10 max-w-2xl" data-ar="القلعة - وجهتكم الأولى للرخام والجرانيت الفاخر. نقدم أرقى أنواع الأحجار الطبيعية مع خبرة تمتد لعقود في التصنيع والتشطيب." data-en="AL QALAA - Your premier destination for luxury marble and granite. We offer the finest natural stones with decades of fabrication and finishing expertise.">
+            القلعة - وجهتكم الأولى للرخام والجرانيت الفاخر. نقدم أرقى أنواع الأحجار الطبيعية مع خبرة تمتد لعقود في التصنيع والتشطيب.
+          </p>
+          <div class="reveal reveal-delay-3 flex flex-wrap gap-4">
+            <a href="#gallery" class="btn-primary">
+              <i class="fas fa-gem"></i>
+              <span data-ar="استكشف الأحجار" data-en="Explore Stones">استكشف الأحجار</span>
+            </a>
+            <a href="#projects" class="btn-secondary">
+              <i class="fas fa-images"></i>
+              <span data-ar="شاهد مشاريعنا" data-en="View Projects">شاهد مشاريعنا</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator" aria-hidden="true">
+        <div class="scroll-mouse"></div>
+        <span data-ar="استكشف" data-en="Explore">استكشف</span>
+      </div>
+    </section>
+
+    <!-- ========== STONE GALLERY ========== -->
+    <section id="gallery" class="py-20 md:py-28 bg-ivory fortress-pattern">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-14 reveal">
+          <h2 class="section-heading centered text-3xl md:text-4xl font-black text-charcoal" data-ar="معرض الأحجار" data-en="Stone Gallery">معرض الأحجار</h2>
+          <p class="text-stone-gray mt-6 text-lg max-w-xl mx-auto" data-ar="اكتشف مجموعتنا المتميزة من أرقى أنواع الرخام والجرانيت الطبيعي" data-en="Discover our distinguished collection of the finest natural marble and granite">اكتشف مجموعتنا المتميزة من أرقى أنواع الرخام والجرانيت الطبيعي</p>
+        </div>
+
+        <!-- Search -->
+        <div class="reveal max-w-xl mx-auto mb-8">
+          <div class="search-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="stoneSearch" class="search-input" placeholder="ابحث عن حجر..." data-ar-placeholder="ابحث عن حجر..." data-en-placeholder="Search for a stone..." aria-label="البحث في الأحجار">
+          </div>
+        </div>
+
+        <!-- Type Filters -->
+        <div class="reveal flex flex-wrap justify-center gap-3 mb-5">
+          <button class="filter-btn active" data-filter-type="all" data-ar="الكل" data-en="All">الكل</button>
+          <button class="filter-btn" data-filter-type="marble" data-ar="رخام" data-en="Marble">رخام</button>
+          <button class="filter-btn" data-filter-type="granite" data-ar="جرانيت" data-en="Granite">جرانيت</button>
+        </div>
+
+        <!-- Color Filters -->
+        <div class="reveal flex flex-wrap justify-center gap-3 mb-12">
+          <button class="filter-btn active" data-filter-color="all" data-ar="جميع الألوان" data-en="All Colors">جميع الألوان</button>
+          <button class="filter-btn" data-filter-color="white" data-ar="أبيض" data-en="White">أبيض</button>
+          <button class="filter-btn" data-filter-color="black" data-ar="أسود" data-en="Black">أسود</button>
+          <button class="filter-btn" data-filter-color="gray" data-ar="رمادي" data-en="Gray">رمادي</button>
+          <button class="filter-btn" data-filter-color="brown" data-ar="بني" data-en="Brown">بني</button>
+          <button class="filter-btn" data-filter-color="red" data-ar="أحمر" data-en="Red">أحمر</button>
+          <button class="filter-btn" data-filter-color="green" data-ar="أخضر" data-en="Green">أخضر</button>
+        </div>
+
+        <!-- Stone Cards Grid -->
+        <div id="stoneGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7">
+          <!-- Cards injected by JS -->
+        </div>
+        <div id="noStoneResults" class="no-results hidden">
+          <i class="fas fa-search text-4xl text-stone-gray/40 mb-4 block"></i>
+          <span data-ar="لم يتم العثور على نتائج" data-en="No results found">لم يتم العثور على نتائج</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PROJECTS ========== -->
+    <section id="projects" class="py-20 md:py-28 bg-charcoal relative overflow-hidden">
+      <div class="absolute inset-0 opacity-[0.03]" style="background-image: repeating-linear-gradient(45deg, var(--antique-gold) 0, var(--antique-gold) 1px, transparent 0, transparent 50%); background-size: 40px 40px;" aria-hidden="true"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-14 reveal">
+          <h2 class="section-heading centered text-3xl md:text-4xl font-black text-ivory" data-ar="مشاريع منجزة" data-en="Completed Projects">مشاريع منجزة</h2>
+          <p class="text-stone-gray mt-6 text-lg max-w-xl mx-auto" data-ar="نماذج من أعمالنا التي تتحدث عن خبرتنا وإتقاننا" data-en="Samples of our work that speak to our expertise and craftsmanship">نماذج من أعمالنا التي تتحدث عن خبرتنا وإتقاننا</p>
+        </div>
+
+        <!-- Project Category Filters -->
+        <div class="reveal flex flex-wrap justify-center gap-3 mb-12" id="projectFilters">
+          <button class="filter-btn active" data-project-cat="all" data-ar="الكل" data-en="All">الكل</button>
+          <button class="filter-btn" data-project-cat="kitchen" data-ar="المطابخ" data-en="Kitchens">المطابخ</button>
+          <button class="filter-btn" data-project-cat="stairs" data-ar="السلالم" data-en="Stairs">السلالم</button>
+          <button class="filter-btn" data-project-cat="bathroom" data-ar="الحمامات" data-en="Bathrooms">الحمامات</button>
+          <button class="filter-btn" data-project-cat="entrance" data-ar="المداخل" data-en="Entrances">المداخل</button>
+          <button class="filter-btn" data-project-cat="flooring" data-ar="الأرضيات" data-en="Flooring">الأرضيات</button>
+          <button class="filter-btn" data-project-cat="cladding" data-ar="الواجهات" data-en="Cladding">الواجهات</button>
+          <button class="filter-btn" data-project-cat="custom" data-ar="أعمال خاصة" data-en="Custom">أعمال خاصة</button>
+        </div>
+
+        <!-- Projects Grid -->
+        <div id="projectGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Injected by JS -->
+        </div>
+        <div id="noProjectResults" class="no-results hidden text-ivory/50">
+          <i class="fas fa-hard-hat text-4xl mb-4 block opacity-40"></i>
+          <span data-ar="لا توجد مشاريع في هذا التصنيف" data-en="No projects in this category">لا توجد مشاريع في هذا التصنيف</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== WORKSHOP ========== -->
+    <section id="workshop" class="py-20 md:py-28 bg-ivory fortress-pattern">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-14 reveal">
+          <h2 class="section-heading centered text-3xl md:text-4xl font-black text-charcoal" data-ar="ورشة الحرفية" data-en="Craftsmanship Workshop">ورشة الحرفية</h2>
+          <p class="text-stone-gray mt-6 text-lg max-w-xl mx-auto" data-ar="خدمات متكاملة من أفضل الحرفيين والمعدات المتطورة" data-en="Comprehensive services from the finest craftsmen and advanced equipment">خدمات متكاملة من أفضل الحرفيين والمعدات المتطورة</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+          <!-- Service 1 -->
+          <div class="service-card reveal reveal-delay-1">
+            <div class="w-14 h-14 rounded-xl bg-antique-gold/10 flex items-center justify-center text-antique-gold text-2xl mb-5">
+              <i class="fas fa-cut"></i>
+            </div>
+            <h3 class="text-xl font-bold text-charcoal mb-3" data-ar="القص بال CNC" data-en="CNC Cutting">القص بال CNC</h3>
+            <p class="text-stone-gray leading-relaxed" data-ar="دقة متناهية في القص والتشكيل باستخدام أحدث أجهزة التحكم الرقمي لضمان قطع مثالي لكل تصميم" data-en="Extreme precision cutting and shaping using the latest CNC machines for perfect cuts on every design">دقة متناهية في القص والتشكيل باستخدام أحدث أجهزة التحكم الرقمي لضمان قطع مثالي لكل تصميم</p>
+          </div>
+          <!-- Service 2 -->
+          <div class="service-card reveal reveal-delay-2">
+            <div class="w-14 h-14 rounded-xl bg-antique-gold/10 flex items-center justify-center text-antique-gold text-2xl mb-5">
+              <i class="fas fa-hand-sparkles"></i>
+            </div>
+            <h3 class="text-xl font-bold text-charcoal mb-3" data-ar="التشطيب والصقل" data-en="Finishing & Polishing">التشطيب والصقل</h3>
+            <p class="text-stone-gray leading-relaxed" data-ar="تشطيب احترافي يبرز جمال الحجر الطبيعي مع خيارات متعددة للسطح: مصقول، مطفأ، فرشاة، وحراري" data-en="Professional finishing that brings out the natural beauty of stone with multiple surface options: polished, honed, brushed, and flamed">تشطيب احترافي يبرز جمال الحجر الطبيعي مع خيارات متعددة للسطح: مصقول، مطفأ، فرشاة، وحراري</p>
+          </div>
+          <!-- Service 3 -->
+          <div class="service-card reveal reveal-delay-3">
+            <div class="w-14 h-14 rounded-xl bg-antique-gold/10 flex items-center justify-center text-antique-gold text-2xl mb-5">
+              <i class="fas fa-hammer"></i>
+            </div>
+            <h3 class="text-xl font-bold text-charcoal mb-3" data-ar="النحت والحفر" data-en="Carving & Engraving">النحت والحفر</h3>
+            <p class="text-stone-gray leading-relaxed" data-ar="أعمال نحت وزخرفة يدوية ورقمية تضفي لمسة فنية فريدة على كل قطعة حجرية" data-en="Hand-carved and digital engraving work that adds a unique artistic touch to every stone piece">أعمال نحت وزخرفة يدوية ورقمية تضفي لمسة فنية فريدة على كل قطعة حجرية</p>
+          </div>
+          <!-- Service 4 -->
+          <div class="service-card reveal reveal-delay-1">
+            <div class="w-14 h-14 rounded-xl bg-antique-gold/10 flex items-center justify-center text-antique-gold text-2xl mb-5">
+              <i class="fas fa-ruler-combined"></i>
+            </div>
+            <h3 class="text-xl font-bold text-charcoal mb-3" data-ar="التصميم المخصص" data-en="Custom Design">التصميم المخصص</h3>
+            <p class="text-stone-gray leading-relaxed" data-ar="تحويل رؤيتك إلى واقع مع خدمات تصميم مخصصة تتناسب مع ذوقك ومساحتك" data-en="Turning your vision into reality with custom design services tailored to your taste and space">تحويل رؤيتك إلى واقع مع خدمات تصميم مخصصة تتناسب مع ذوقك ومساحتك</p>
+          </div>
+          <!-- Service 5 -->
+          <div class="service-card reveal reveal-delay-2">
+            <div class="w-14 h-14 rounded-xl bg-antique-gold/10 flex items-center justify-center text-antique-gold text-2xl mb-5">
+              <i class="fas fa-tools"></i>
+            </div>
+            <h3 class="text-xl font-bold text-charcoal mb-3" data-ar="التجميع والتركيب" data-en="Assembly & Installation">التجميع والتركيب</h3>
+            <p class="text-stone-gray leading-relaxed" data-ar="فريق تركيب متخصص يضمن تنفيذ مثالي وعالي الجودة في موقع المشروع" data-en="Specialized installation team ensuring perfect, high-quality execution at the project site">فريق تركيب متخصص يضمن تنفيذ مثالي وعالي الجودة في موقع المشروع</p>
+          </div>
+          <!-- Service 6 -->
+          <div class="service-card reveal reveal-delay-3">
+            <div class="w-14 h-14 rounded-xl bg-antique-gold/10 flex items-center justify-center text-antique-gold text-2xl mb-5">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h3 class="text-xl font-bold text-charcoal mb-3" data-ar="المعالجة والحماية" data-en="Treatment & Protection">المعالجة والحماية</h3>
+            <p class="text-stone-gray leading-relaxed" data-ar="معالجات متخصصة لمقاومة البقع والرطوبة لضمان بقاء الحجر بأفضل حالة لسنوات طويلة" data-en="Specialized treatments for stain and moisture resistance to keep stone in the best condition for years">معالجات متخصصة لمقاومة البقع والرطوبة لضمان بقاء الحجر بأفضل حالة لسنوات طويلة</p>
+          </div>
+        </div>
+
+        <!-- Workshop Image -->
+        <div class="mt-16 reveal">
+          <div class="relative rounded-2xl overflow-hidden h-64 md:h-96">
+            <img src="https://picsum.photos/seed/workshop-cnc-5/1400/600" alt="ورشة القلعة - التصنيع المتقدم" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-charcoal/80 via-charcoal/30 to-transparent flex items-end p-8 md:p-12">
+              <div>
+                <span class="text-antique-gold font-accent text-sm tracking-[0.2em]" data-ar="القلعة للرخام والجرانيت" data-en="AL QALAA Marble & Granite">القلعة للرخام والجرانيت</span>
+                <h3 class="text-ivory text-2xl md:text-3xl font-bold mt-2" data-ar="حيث تتحول الأحجار إلى تحف فنية" data-en="Where Stones Become Masterpieces">حيث تتحول الأحجار إلى تحف فنية</h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CALCULATOR ========== -->
+    <section id="calculator" class="py-20 md:py-28 bg-charcoal relative">
+      <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(var(--antique-gold) 1px, transparent 1px), linear-gradient(90deg, var(--antique-gold) 1px, transparent 1px); background-size: 40px 40px;" aria-hidden="true"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-14 reveal">
+          <h2 class="section-heading centered text-3xl md:text-4xl font-black text-ivory" data-ar="الحاسبة" data-en="Calculator">الحاسبة</h2>
+          <p class="text-stone-gray mt-6 text-lg max-w-xl mx-auto" data-ar="أداة حسابية سريعة لاستخداماتكم اليومية" data-en="A quick calculation tool for your daily use">أداة حسابية سريقة لاستخداماتكم اليومية</p>
+        </div>
+
+        <div class="reveal">
+          <div class="calc-container" role="application" aria-label="الحاسبة">
+            <div class="calc-display">
+              <div class="calc-prev" id="calcPrev" aria-live="polite"></div>
+              <div class="calc-current" id="calcCurrent">0</div>
+            </div>
+            <div class="calc-grid">
+              <button class="calc-btn clear" data-action="clear" aria-label="مسح الكل">AC</button>
+              <button class="calc-btn clear" data-action="delete" aria-label="حذف آخر رقم"><i class="fas fa-backspace"></i></button>
+              <button class="calc-btn op" data-action="percent" aria-label="نسبة مئوية">%</button>
+              <button class="calc-btn op" data-action="op" data-op="÷" aria-label="قسمة">÷</button>
+
+              <button class="calc-btn" data-action="number" data-num="7">7</button>
+              <button class="calc-btn" data-action="number" data-num="8">8</button>
+              <button class="calc-btn" data-action="number" data-num="9">9</button>
+              <button class="calc-btn op" data-action="op" data-op="×" aria-label="ضرب">×</button>
+
+              <button class="calc-btn" data-action="number" data-num="4">4</button>
+              <button class="calc-btn" data-action="number" data-num="5">5</button>
+              <button class="calc-btn" data-action="number" data-num="6">6</button>
+              <button class="calc-btn op" data-action="op" data-op="-" aria-label="طرح">-</button>
+
+              <button class="calc-btn" data-action="number" data-num="1">1</button>
+              <button class="calc-btn" data-action="number" data-num="2">2</button>
+              <button class="calc-btn" data-action="number" data-num="3">3</button>
+              <button class="calc-btn op" data-action="op" data-op="+" aria-label="جمع">+</button>
+
+              <button class="calc-btn wide" data-action="number" data-num="0">0</button>
+              <button class="calc-btn" data-action="decimal" aria-label="فاصلة عشرية">.</button>
+              <button class="calc-btn equals" data-action="equals" aria-label="يساوي">=</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section id="about" class="py-20 md:py-28 bg-ivory fortress-pattern">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <!-- Image Side -->
+          <div class="reveal order-2 lg:order-1">
+            <div class="relative">
+              <div class="rounded-2xl overflow-hidden shadow-2xl">
+                <img src="https://picsum.photos/seed/stone-craftsman-9/800/600" alt="حرفيو القلعة" class="w-full h-80 md:h-[450px] object-cover">
+              </div>
+              <div class="absolute -bottom-6 -left-4 md:-left-8 w-32 h-32 border-2 border-antique-gold/30 rounded-xl transform rotate-3" aria-hidden="true"></div>
+              <div class="absolute -top-6 -right-4 md:-right-8 w-24 h-24 bg-antique-gold/10 rounded-xl transform -rotate-6" aria-hidden="true"></div>
+            </div>
+          </div>
+          <!-- Text Side -->
+          <div class="order-1 lg:order-2">
+            <div class="reveal">
+              <span class="text-antique-gold font-accent text-sm tracking-[0.3em]" data-ar="قصتنا" data-en="Our Story">قصتنا</span>
+              <h2 class="section-heading text-3xl md:text-4xl font-black text-charcoal mt-3" data-ar="القلعة للرخام والجرانيت" data-en="AL QALAA Marble & Granite">القلعة للرخام والجرانيت</h2>
+            </div>
+            <div class="reveal reveal-delay-1 mt-8 space-y-5 text-stone-gray text-lg leading-relaxed">
+              <p data-ar="تأسست القلعة لتكون صرحًا شامخًا في عالم الأحجار الطبيعية، حيث يجتمع الإتقان مع الإبداع في كل قطعة نقدمها. اسم مستمد من الحصانة والمتانة، ورسالة متجذرة في تقديم أرقى المنتجات الحجرية." data-en="AL QALAA was founded to be a towering landmark in the world of natural stone, where precision meets creativity in every piece we deliver. A name derived from strength and durability, with a mission rooted in offering the finest stone products.">تأسست القلعة لتكون صرحًا شامخًا في عالم الأحجار الطبيعية، حيث يجتمع الإتقان مع الإبداع في كل قطعة نقدمها. اسم مستمد من الحصانة والمتانة، ورسالة متجذرة في تقديم أرقى المنتجات الحجرية.</p>
+              <p data-ar="نعمل مع نخبة من الحرفيين والمهندسين المتخصصين، ونستخدم أحدث التقنيات لتحويل الأحجار الخام إلى تحف معمارية تضفي جمالًا وفخامة على كل مساحة." data-en="We work with elite craftsmen and specialized engineers, using the latest technology to transform raw stones into architectural masterpieces that add beauty and luxury to every space.">نعمل مع نخبة من الحرفيين والمهندسين المتخصصين، ونستخدم أحدث التقنيات لتحويل الأحجار الخام إلى تحف معمارية تضفي جمالًا وفخامة على كل مساحة.</p>
+            </div>
+            <div class="reveal reveal-delay-2 mt-10 grid grid-cols-3 gap-6">
+              <div class="text-center">
+                <span class="text-3xl md:text-4xl font-black text-antique-gold font-accent">25+</span>
+                <span class="block text-stone-gray text-sm mt-1" data-ar="سنة خبرة" data-en="Years Experience">سنة خبرة</span>
+              </div>
+              <div class="text-center">
+                <span class="text-3xl md:text-4xl font-black text-antique-gold font-accent">500+</span>
+                <span class="block text-stone-gray text-sm mt-1" data-ar="مشروع منجز" data-en="Completed Projects">مشروع منجز</span>
+              </div>
+              <div class="text-center">
+                <span class="text-3xl md:text-4xl font-black text-antique-gold font-accent">120+</span>
+                <span class="block text-stone-gray text-sm mt-1" data-ar="نوع حجر" data-en="Stone Types">نوع حجر</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section id="contact" class="py-20 md:py-28 bg-deep-black relative overflow-hidden">
+      <div class="absolute inset-0 opacity-[0.02]" style="background-image: repeating-linear-gradient(45deg, var(--antique-gold) 0, var(--antique-gold) 1px, transparent 0, transparent 50%), repeating-linear-gradient(-45deg, var(--antique-gold) 0, var(--antique-gold) 1px, transparent 0, transparent 50%); background-size: 60px 60px;" aria-hidden="true"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-14 reveal">
+          <h2 class="section-heading centered text-3xl md:text-4xl font-black text-ivory" data-ar="تواصل معنا" data-en="Contact Us">تواصل معنا</h2>
+          <p class="text-stone-gray mt-6 text-lg max-w-xl mx-auto" data-ar="نسعد بخدمتكم والإجابة على جميع استفساراتكم" data-en="We are happy to serve you and answer all your inquiries">نسعد بخدمتكم والإجابة على جميع استفساراتكم</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <!-- Phone -->
+          <div class="contact-item reveal reveal-delay-1">
+            <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+            <div>
+              <h4 class="text-ivory font-bold mb-1" data-ar="الهاتف" data-en="Phone">الهاتف</h4>
+              <a href="tel:+966XXXXXXXXX" class="text-stone-gray hover:text-antique-gold transition-colors" dir="ltr">+966 XX XXX XXXX</a>
+              <p class="text-stone-gray/50 text-xs mt-1" data-ar="قابل للتعديل - أضف رقمكم الفعلي" data-en="Editable - Add your actual number">قابل للتعديل - أضف رقمكم الفعلي</p>
+            </div>
+          </div>
+          <!-- WhatsApp -->
+          <div class="contact-item reveal reveal-delay-2">
+            <div class="contact-icon" style="background:rgba(37,211,102,0.12);color:#25d366"><i class="fab fa-whatsapp"></i></div>
+            <div>
+              <h4 class="text-ivory font-bold mb-1" data-ar="واتساب" data-en="WhatsApp">واتساب</h4>
+              <a href="https://wa.me/966XXXXXXXXX" target="_blank" rel="noopener" class="text-stone-gray hover:text-antique-gold transition-colors" dir="ltr">+966 XX XXX XXXX</a>
+              <p class="text-stone-gray/50 text-xs mt-1" data-ar="قابل للتعديل - أضف رقم واتساب" data-en="Editable - Add your WhatsApp number">قابل للتعديل - أضف رقم واتساب</p>
+            </div>
+          </div>
+          <!-- Address -->
+          <div class="contact-item reveal reveal-delay-3">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div>
+              <h4 class="text-ivory font-bold mb-1" data-ar="العنوان" data-en="Address">العنوان</h4>
+              <span class="text-stone-gray" data-ar="المملكة العربية السعودية - [أضف المدينة والحارة]" data-en="Saudi Arabia - [Add City & District]">المملكة العربية السعودية - [أضف المدينة والحارة]</span>
+              <p class="text-stone-gray/50 text-xs mt-1" data-ar="قابل للتعديل" data-en="Editable">قابل للتعديل</p>
+            </div>
+          </div>
+          <!-- Hours -->
+          <div class="contact-item reveal reveal-delay-1">
+            <div class="contact-icon"><i class="fas fa-clock"></i></div>
+            <div>
+              <h4 class="text-ivory font-bold mb-1" data-ar="ساعات العمل" data-en="Working Hours">ساعات العمل</h4>
+              <span class="text-stone-gray" data-ar="السبت - الخميس: 8:00 ص - 6:00 م" data-en="Sat - Thu: 8:00 AM - 6:00 PM">السبت - الخميس: 8:00 ص - 6:00 م</span>
+              <span class="block text-stone-gray/60 text-sm mt-1" data-ar="الجمعة: مغلق" data-en="Friday: Closed">الجمعة: مغلق</span>
+            </div>
+          </div>
+          <!-- Email -->
+          <div class="contact-item reveal reveal-delay-2">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div>
+              <h4 class="text-ivory font-bold mb-1" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</h4>
+              <a href="mailto:info@alqalaa.com" class="text-stone-gray hover:text-antique-gold transition-colors" dir="ltr">info@alqalaa.com</a>
+              <p class="text-stone-gray/50 text-xs mt-1" data-ar="قابل للتعديل" data-en="Editable">قابل للتعديل</p>
+            </div>
+          </div>
+          <!-- Social -->
+          <div class="contact-item reveal reveal-delay-3">
+            <div class="contact-icon"><i class="fas fa-share-alt"></i></div>
+            <div>
+              <h4 class="text-ivory font-bold mb-2" data-ar="تابعنا" data-en="Follow Us">تابعنا</h4>
+              <div class="flex gap-4 text-stone-gray">
+                <a href="#" aria-label="انستغرام" class="hover:text-antique-gold transition-colors text-lg"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="تويتر" class="hover:text-antique-gold transition-colors text-lg"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="سناب شات" class="hover:text-antique-gold transition-colors text-lg"><i class="fab fa-snapchat-ghost"></i></a>
+                <a href="#" aria-label="تيك توك" class="hover:text-antique-gold transition-colors text-lg"><i class="fab fa-tiktok"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="bg-charcoal border-t border-ivory/5" role="contentinfo">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <!-- Brand -->
+        <div>
+          <div class="flex items-center gap-3 mb-5">
+            <div class="w-10 h-10 border-2 border-antique-gold flex items-center justify-center transform rotate-45">
+              <span class="transform -rotate-45 text-antique-gold font-accent text-lg font-bold">Q</span>
+            </div>
+            <div>
+              <span class="text-xl font-bold text-ivory">القلعة</span>
+              <span class="block text-[0.6rem] text-antique-gold font-accent tracking-[0.3em] -mt-1">AL QALAA</span>
+            </div>
+          </div>
+          <p class="text-stone-gray leading-relaxed text-sm max-w-xs" data-ar="وجهتكم الأولى للرخام والجرانيت الفاخر. نصنع الفخامة من قلب الحجر." data-en="Your premier destination for luxury marble and granite. Crafting luxury from the heart of stone.">وجهتكم الأولى للرخام والجرانيت الفاخر. نصنع الفخامة من قلب الحجر.</p>
+        </div>
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-ivory font-bold mb-5" data-ar="روابط سريعة" data-en="Quick Links">روابط سريعة</h4>
+          <nav aria-label="روابط التذييل">
+            <ul class="space-y-3">
+              <li><a href="#gallery" class="text-stone-gray hover:text-antique-gold transition-colors text-sm" data-ar="معرض الأحجار" data-en="Stone Gallery">معرض الأحجار</a></li>
+              <li><a href="#projects" class="text-stone-gray hover:text-antique-gold transition-colors text-sm" data-ar="مشاريعنا" data-en="Projects">مشاريعنا</a></li>
+              <li><a href="#workshop" class="text-stone-gray hover:text-antique-gold transition-colors text-sm" data-ar="الورشة" data-en="Workshop">الورشة</a></li>
+              <li><a href="#about" class="text-stone-gray hover:text-antique-gold transition-colors text-sm" data-ar="من نحن" data-en="About">من نحن</a></li>
+              <li><a href="#contact" class="text-stone-gray hover:text-antique-gold transition-colors text-sm" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a></li>
+            </ul>
+          </nav>
+        </div>
+        <!-- Contact Brief -->
+        <div>
+          <h4 class="text-ivory font-bold mb-5" data-ar="تواصل سريع" data-en="Quick Contact">تواصل سريع</h4>
+          <div class="space-y-3 text-sm">
+            <a href="tel:+966XXXXXXXXX" class="flex items-center gap-3 text-stone-gray hover:text-antique-gold transition-colors">
+              <i class="fas fa-phone-alt text-antique-gold/60 w-5 text-center"></i>
+              <span dir="ltr">+966 XX XXX XXXX</span>
+            </a>
+            <a href="https://wa.me/966XXXXXXXXX" target="_blank" rel="noopener" class="flex items-center gap-3 text-stone-gray hover:text-antique-gold transition-colors">
+              <i class="fab fa-whatsapp text-antique-gold/60 w-5 text-center"></i>
+              <span dir="ltr">+966 XX XXX XXXX</span>
+            </a>
+            <a href="mailto:info@alqalaa.com" class="flex items-center gap-3 text-stone-gray hover:text-antique-gold transition-colors">
+              <i class="fas fa-envelope text-antique-gold/60 w-5 text-center"></i>
+              <span>info@alqalaa.com</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Copyright -->
+    <div class="border-t border-ivory/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row justify-between items-center gap-3">
+        <p class="text-stone-gray/50 text-sm" data-ar="© 2024 القلعة | AL QALAA. جميع الحقوق محفوظة." data-en="© 2024 AL QALAA. All rights reserved.">© 2024 القلعة | AL QALAA. جميع الحقوق محفوظة.</p>
+        <p class="text-stone-gray/30 text-xs" data-ar="صُمم بعناية وفخامة" data-en="Crafted with care & elegance">صُمم بعناية وفخامة</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to Top -->
+  <button class="back-to-top" id="backToTop" aria-label="العودة للأعلى">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <script>
+    // ==================== DATA ====================
+    const stones = [
+      {
+        id: 1, name: 'كالاكاتا أورو', nameEn: 'Calacatta Oro',
+        type: 'marble', color: 'white',
+        image: 'https://picsum.photos/seed/calacatta-oro-3/600/400',
+        description: 'رخام إيطالي فاخر بعروق ذهبية مميزة يمنح مساحتك أناقة استثنائية',
+        specs: 'الأصل: إيطاليا | الصلابة: 3 موهس | الامتصاص: 0.1%'
+      },
+      {
+        id: 2, name: 'ستاتواريو', nameEn: 'Statuario',
+        type: 'marble', color: 'white',
+        image: 'https://picsum.photos/seed/statuario-marble-5/600/400',
+        description: 'رخام إيطالي كلاسيكي بعرقات رمادية أنيقة من محاجر كرارا الإيطالية',
+        specs: 'الأصل: إيطاليا | الصلابة: 3 موهس | الامتصاص: 0.15%'
+      },
+      {
+        id: 3, name: 'نيرو ماركوينيا', nameEn: 'Nero Marquina',
+        type: 'marble', color: 'black',
+        image: 'https://picsum.photos/seed/nero-marquina-7/600/400',
+        description: 'رخام أسود إسباني بعرقات بيضاء درامية يخلق تبايناً فذاً',
+        specs: 'الأصل: إسبانيا | الصلابة: 3 موهس | الامتصاص: 0.2%'
+      },
+      {
+        id: 4, name: 'إمبرادور دارك', nameEn: 'Emperador Dark',
+        type: 'marble', color: 'brown',
+        image: 'https://picsum.photos/seed/emperador-dark-4/600/400',
+        description: 'رخام بني داكن إسباني بعرقات بيضاء دقيقة يضفي دفئاً على المساحة',
+        specs: 'الأصل: إسبانيا | الصلابة: 3 موهس | الامتصاص: 0.2%'
+      },
+      {
+        id: 5, name: 'روسو ليفانتو', nameEn: 'Rosso Levanto',
+        type: 'marble', color: 'red',
+        image: 'https://picsum.photos/seed/rosso-levanto-2/600/400',
+        description: 'رخام أحمر إيطالي غامق بعرقات بيضاء يخلق حضوراً قوياً وفريداً',
+        specs: 'الأصل: إيطاليا | الصلابة: 3 موهس | الامتصاص: 0.2%'
+      },
+      {
+        id: 6, name: 'ثاسوس أبيض', nameEn: 'Thassos White',
+        type: 'marble', color: 'white',
+        image: 'https://picsum.photos/seed/thassos-white-8/600/400',
+        description: 'رخام يوناني نقي ناصع البياض يعتبر من أجود أنواع الرخام الأبيض',
+        specs: 'الأصل: اليونان | الصلابة: 3 موهس | الامتصاص: 0.1%'
+      },
+      {
+        id: 7, name: 'أسبان بلاك', nameEn: 'Absolute Black',
+        type: 'granite', color: 'black',
+        image: 'https://picsum.photos/seed/absolute-black-6/600/400',
+        description: 'جرانيت أسود مصري صلب بتشطيب فائق اللمعان مناسب للأسطح عالية الاستخدام',
+        specs: 'الأصل: مصر | الصلابة: 6-7 موهس | الامتصاص: 0.05%'
+      },
+      {
+        id: 8, name: 'جالا غراي', nameEn: 'Gala Grey',
+        type: 'granite', color: 'gray',
+        image: 'https://picsum.photos/seed/gala-grey-granite-1/600/400',
+        description: 'جرانيت رمادي مصري بنقوش دقيقة يتحمل الاستخدام المكثف بفضل صلابته',
+        specs: 'الأصل: مصر | الصلابة: 6-7 موهس | الامتصاص: 0.1%'
+      },
+      {
+        id: 9, name: 'تان براون', nameEn: 'Tan Brown',
+        type: 'granite', color: 'brown',
+        image: 'https://picsum.photos/seed/tan-brown-granite-3/600/400',
+        description: 'جرانيت هندي بني داكن بنقوش سوداء يضفي فخامة هادئة على أي تصميم',
+        specs: 'الأصل: الهند | الصلابة: 6-7 موهس | الامتصاص: 0.1%'
+      },
+      {
+        id: 10, name: 'ريد جرانيت', nameEn: 'Red Multicolor',
+        type: 'granite', color: 'red',
+        image: 'https://picsum.photos/seed/red-granite-5/600/400',
+        description: 'جرانيت أحمر هندي بتدرجات لونية مذهلة مناسب للمداخل والأرضيات',
+        specs: 'الأصل: الهند | الصلابة: 6-7 موهس | الامتصاص: 0.1%'
+      },
+      {
+        id: 11, name: 'أبيض ألاسكا', nameEn: 'Alaska White',
+        type: 'granite', color: 'white',
+        image: 'https://picsum.photos/seed/alaska-white-7/600/400',
+        description: 'جرانيت برازيلي أبيض بعروق رمادية يدمج المتانة مع الأناقة',
+        specs: 'الأصل: البرازيل | الصلابة: 6-7 موهس | الامتصاص: 0.05%'
+      },
+      {
+        id: 12, name: 'فيردي جاد', nameEn: 'Verde Jade',
+        type: 'granite', color: 'green',
+        image: 'https://picsum.photos/seed/verde-jade-9/600/400',
+        description: 'جرانيت أخضر نادر بألوان طبيعية مذهلة يضفي حيوية وتميزاً على المساحات',
+        specs: 'الأصل: الهند | الصلابة: 6-7 موهس | الامتصاص: 0.1%'
+      }
+    ];
+
+    const projects = [
+      {
+        id: 1, title: 'كاونتر مطبخ كالاكاتا', titleEn: 'Calacatta Kitchen Counter',
+        category: 'kitchen',
+        image: 'https://picsum.photos/seed/kitchen-counter-1/800/600',
+        description: 'تصميم عصري برخام كالاكاتا أورو'
+      },
+      {
+        id: 2, title: 'حوض مطبخ مدمج', titleEn: 'Integrated Kitchen Sink',
+        category: 'kitchen',
+        image: 'https://picsum.photos/seed/kitchen-sink-2/800/600',
+        description: 'حوض جرانيت مدمج بتصميم انسيابي'
+      },
+      {
+        id: 3, title: 'سلم رخامي فاخر', titleEn: 'Luxury Marble Staircase',
+        category: 'stairs',
+        image: 'https://picsum.photos/seed/marble-stairs-3/800/600',
+        description: 'درج رخامي بتفاصيل نحت دقيقة'
+      },
+      {
+        id: 4, title: 'درج جرانيت خارجي', titleEn: 'Exterior Granite Stairs',
+        category: 'stairs',
+        image: 'https://picsum.photos/seed/exterior-stairs-4/800/600',
+        description: 'درج جرانيت مقاوم للعوامل الجوية'
+      },
+      {
+        id: 5, title: ' vanity رخامي فاخر', titleEn: 'Luxury Marble Vanity',
+        category: 'bathroom',
+        image: 'https://picsum.photos/seed/bathroom-vanity-5/800/600',
+        description: 'حوض حمام رخامي بتصميم أنيق'
+      },
+      {
+        id: 6, title: 'حمام ستاتواريو كامل', titleEn: 'Full Statuario Bathroom',
+        category: 'bathroom',
+        image: 'https://picsum.photos/seed/full-bathroom-6/800/600',
+        description: 'تغليف كامل برخام ستاتواريو'
+      },
+      {
+        id: 7, title: 'مدخل فيلا رخامي', titleEn: 'Marble Villa Entrance',
+        category: 'entrance',
+        image: 'https://picsum.photos/seed/villa-entrance-7/800/600',
+        description: 'مدخل مهيب بتفاصيل هندسية رخامية'
+      },
+      {
+        id: 8, title: 'مدخل تجاري جرانيت', titleEn: 'Commercial Granite Entrance',
+        category: 'entrance',
+        image: 'https://picsum.photos/seed/commercial-entrance-8/800/600',
+        description: 'مدخل مقاوم للاستخدام المكثف'
+      },
+      {
+        id: 9, title: 'أرضية قاعة رخامية', titleEn: 'Marble Hall Flooring',
+        category: 'flooring',
+        image: 'https://picsum.photos/seed/marble-flooring-9/800/600',
+        description: 'أرضية برخام إمبرادور بتركيب هندسي'
+      },
+      {
+        id: 10, title: 'أرضية خارجية جرانيت', titleEn: 'Exterior Granite Flooring',
+        category: 'flooring',
+        image: 'https://picsum.photos/seed/granite-flooring-10/800/600',
+        description: 'أرضية خارجية مقاومة للانزلاق'
+      },
+      {
+        id: 11, title: 'واجهة رخامية معاصرة', titleEn: 'Contemporary Marble Cladding',
+        category: 'cladding',
+        image: 'https://picsum.photos/seed/marble-cladding-11/800/600',
+        description: 'تغليف واجهة بتصميم عصري'
+      },
+      {
+        id: 12, title: 'واجهة حجرية تقليدية', titleEn: 'Traditional Stone Cladding',
+        category: 'cladding',
+        image: 'https://picsum.photos/seed/stone-cladding-12/800/600',
+        description: 'واجهة بلمسة تراثية أصيلة'
+      },
+      {
+        id: 13, title: 'مائدة رخامية فنية', titleEn: 'Artistic Marble Table',
+        category: 'custom',
+        image: 'https://picsum.photos/seed/marble-table-13/800/600',
+        description: 'قطعة فنية مصممة خصيصاً'
+      },
+      {
+        id: 14, title: 'نافورة حجرية', titleEn: 'Stone Fountain',
+        category: 'custom',
+        image: 'https://picsum.photos/seed/stone-fountain-14/800/600',
+        description: 'نافورة منحوتة يدوياً'
+      },
+      {
+        id: 15, title: 'كاونتر جزيرة مطبخ', titleEn: 'Kitchen Island Counter',
+        category: 'kitchen',
+        image: 'https://picsum.photos/seed/island-counter-15/800/600',
+        description: 'كاونتر جزيرة برخام نيرو ماركوينيا'
+      }
+    ];
+
+    // ==================== STONE GALLERY ====================
+    let currentTypeFilter = 'all';
+    let currentColorFilter = 'all';
+    let searchQuery = '';
+
+    function renderStones() {
+      const grid = document.getElementById('stoneGrid');
+      const noResults = document.getElementById('noStoneResults');
+      const filtered = stones.filter(s => {
+        const matchType = currentTypeFilter === 'all' || s.type === currentTypeFilter;
+        const matchColor = currentColorFilter === 'all' || s.color === currentColorFilter;
+        const matchSearch = searchQuery === '' ||
+          s.name.includes(searchQuery) ||
+          s.nameEn.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          s.description.includes(searchQuery);
+        return matchType && matchColor && matchSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+      }
+      noResults.classList.add('hidden');
+
+      grid.innerHTML = filtered.map(stone => `
+        <div class="stone-card gallery-item" data-stone-id="${stone.id}">
+          <div class="card-img relative">
+            <img src="${stone.image}" alt="${stone.name} - ${stone.nameEn}" loading="lazy">
+            <span class="absolute top-3 ${stone.type === 'marble' ? 'type-marble' : 'type-granite'} text-xs font-bold px-3 py-1 rounded-full">
+              ${stone.type === 'marble' ? 'رخام' : 'جرانيت'}
+            </span>
+          </div>
+          <div class="p-5">
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="text-lg font-bold text-charcoal">${stone.name}</h3>
+              <span class="text-stone-gray text-xs font-accent">${stone.nameEn}</span>
+            </div>
+            <p class="text-stone-gray text-sm leading-relaxed mb-3">${stone.description}</p>
+            <div class="flex flex-wrap gap-2">
+              ${stone.specs.split(' | ').map(spec => `<span class="spec-badge">${spec}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Stone filter event listeners
+    document.querySelectorAll('[data-filter-type]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-filter-type]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentTypeFilter = btn.dataset.filterType;
+        renderStones();
+      });
+    });
+
+    document.querySelectorAll('[data-filter-color]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-filter-color]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentColorFilter = btn.dataset.filterColor;
+        renderStones();
+      });
+    });
+
+    document.getElementById('stoneSearch').addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim();
+      renderStones();
+    });
+
+    // Initial render
+    renderStones();
+
+    // ==================== PROJECTS GALLERY ====================
+    let currentProjectCat = 'all';
+
+    function renderProjects() {
+      const grid = document.getElementById('projectGrid');
+      const noResults = document.getElementById('noProjectResults');
+      const filtered = projects.filter(p => currentProjectCat === 'all' || p.category === currentProjectCat);
+
+      if (filtered.length === 0) {
+        grid.innerHTML = '';
+        noResults.classList.remove('hidden');
+        return;
+      }
+      noResults.classList.add('hidden');
+
+      const categoryLabels = {
+        kitchen: 'المطابخ', stairs: 'السلالم', bathroom: 'الحمامات',
+        entrance: 'المداخل', flooring: 'الأرضيات', cladding: 'الواجهات', custom: 'أعمال خاصة'
+      };
+
+      grid.innerHTML = filtered.map(project => `
+        <div class="project-card gallery-item">
+          <img src="${project.image}" alt="${project.title}" loading="lazy">
+          <div class="project-overlay">
+            <span class="text-antique-gold text-xs font-bold tracking-wider mb-1">${categoryLabels[project.category] || project.category}</span>
+            <h3 class="text-ivory text-lg font-bold">${project.title}</h3>
+            <p class="text-ivory/60 text-sm mt-1">${project.description}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    document.querySelectorAll('[data-project-cat]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('[data-project-cat]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentProjectCat = btn.dataset.projectCat;
+        renderProjects();
+      });
+    });
+
+    renderProjects();
+
+    // ==================== CALCULATOR ====================
+    class Calculator {
+      constructor() {
+        this.currentOperand = '0';
+        this.previousOperand = '';
+        this.operation = null;
+        this.shouldReset = false;
+      }
+
+      appendNumber(num) {
+        if (this.shouldReset) {
+          this.currentOperand = '';
+          this.shouldReset = false;
+        }
+        if (num === '.' && this.currentOperand.includes('.')) return;
+        if (this.currentOperand === '0' && num !== '.') {
+          this.currentOperand = num;
+        } else if (this.currentOperand === '0' && num === '0') {
+          return;
+        } else {
+          this.currentOperand += num;
+        }
+      }
+
+      chooseOperation(op) {
+        if (this.currentOperand === '' && this.previousOperand === '') return;
+        if (this.currentOperand === '' && this.previousOperand !== '') {
+          this.operation = op;
+          this.updateActiveOp();
+          return;
+        }
+        if (this.previousOperand !== '') {
+          this.compute();
+        }
+        this.operation = op;
+        this.previousOperand = this.currentOperand;
+        this.shouldReset = true;
+        this.updateActiveOp();
+      }
+
+      compute() {
+        let result;
+        const prev = parseFloat(this.previousOperand);
+        const curr = parseFloat(this.currentOperand);
+        if (isNaN(prev) || isNaN(curr)) return;
+        switch (this.operation) {
+          case '+': result = prev + curr; break;
+          case '-': result = prev - curr; break;
+          case '×': result = prev * curr; break;
+          case '÷':
+            if (curr === 0) { this.currentOperand = 'خطأ'; this.previousOperand = ''; this.operation = null; return; }
+            result = prev / curr;
+            break;
+          default: return;
+        }
+        // Round to avoid floating point issues
+        result = Math.round(result * 1e12) / 1e12;
+        this.currentOperand = String(result);
+        this.previousOperand = '';
+        this.operation = null;
+        this.shouldReset = true;
+        this.updateActiveOp();
+      }
+
+      percent() {
+        const curr = parseFloat(this.currentOperand);
+        if (isNaN(curr)) return;
+        this.currentOperand = String(Math.round((curr / 100) * 1e12) / 1e12);
+        this.shouldReset = true;
+      }
+
+      clear() {
+        this.currentOperand = '0';
+        this.previousOperand = '';
+        this.operation = null;
+        this.shouldReset = false;
+        this.updateActiveOp();
+      }
+
+      delete() {
+        if (this.currentOperand === 'خطأ') { this.clear(); return; }
+        if (this.shouldReset) return;
+        if (this.currentOperand.length === 1 || (this.currentOperand.length === 2 && this.currentOperand.startsWith('-'))) {
+          this.currentOperand = '0';
+        } else {
+          this.currentOperand = this.currentOperand.slice(0, -1);
+        }
+      }
+
+      updateActiveOp() {
+        document.querySelectorAll('.calc-btn.op[data-op]').forEach(btn => {
+          btn.classList.toggle('active-op', btn.dataset.op === this.operation && !this.shouldReset);
+        });
+      }
+
+      getDisplayValue() {
+        if (this.currentOperand === 'خطأ') return 'خطأ';
+        // Format large numbers
+        const num = parseFloat(this.currentOperand);
+        if (isNaN(num)) return '0';
+        if (this.currentOperand.endsWith('.')) return this.currentOperand;
+        // If decimal and has digits after
+        if (this.currentOperand.includes('.')) {
+          const [intPart, decPart] = this.currentOperand.split('.');
+          return Number(intPart).toLocaleString('en-US') + '.' + decPart;
+        }
+        return num.toLocaleString('en-US');
+      }
+
+      getPrevDisplayValue() {
+        if (!this.previousOperand) return '';
+        const num = parseFloat(this.previousOperand);
+        const formatted = num.toLocaleString('en-US');
+        return formatted + ' ' + (this.operation || '');
+      }
+    }
+
+    const calc = new Calculator();
+    const calcCurrentEl = document.getElementById('calcCurrent');
+    const calcPrevEl = document.getElementById('calcPrev');
+
+    function updateCalcDisplay() {
+      calcCurrentEl.textContent = calc.getDisplayValue();
+      calcPrevEl.textContent = calc.getPrevDisplayValue();
+      // Adjust font size for long numbers
+      const len = calc.getDisplayValue().length;
+      if (len > 12) calcCurrentEl.style.fontSize = '1.4rem';
+      else if (len > 9) calcCurrentEl.style.fontSize = '1.8rem';
+      else calcCurrentEl.style.fontSize = '';
+    }
+
+    document.querySelectorAll('.calc-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.dataset.action;
+        switch (action) {
+          case 'number':
+            calc.appendNumber(btn.dataset.num);
+            break;
+          case 'op':
+            calc.chooseOperation(btn.dataset.op);
+            break;
+          case 'decimal':
+            calc.appendNumber('.');
+            break;
+          case 'equals':
+            calc.compute();
+            break;
+          case 'clear':
+            calc.clear();
+            break;
+          case 'delete':
+            calc.delete();
+            break;
+          case 'percent':
+            calc.percent();
+            break;
+        }
+        updateCalcDisplay();
+      });
+    });
+
+    // Keyboard support for calculator
+    document.addEventListener('keydown', (e) => {
+      // Only respond if calculator section is somewhat in view or focused
+      if (e.key >= '0' && e.key <= '9') { calc.appendNumber(e.key); updateCalcDisplay(); }
+      else if (e.key === '.') { calc.appendNumber('.'); updateCalcDisplay(); }
+      else if (e.key === '+') { calc.chooseOperation('+'); updateCalcDisplay(); }
+      else if (e.key === '-') { calc.chooseOperation('-'); updateCalcDisplay(); }
+      else if (e.key === '*') { calc.chooseOperation('×'); updateCalcDisplay(); }
+      else if (e.key === '/') { e.preventDefault(); calc.chooseOperation('÷'); updateCalcDisplay(); }
+      else if (e.key === 'Enter' || e.key === '=') { calc.compute(); updateCalcDisplay(); }
+      else if (e.key === 'Backspace') { calc.delete(); updateCalcDisplay(); }
+      else if (e.key === 'Escape') { calc.clear(); updateCalcDisplay(); }
+      else if (e.key === '%') { calc.percent(); updateCalcDisplay(); }
+    });
+
+    // ==================== NAVIGATION ====================
+    const nav = document.querySelector('.main-nav');
+    const menuBtn = document.getElementById('menuBtn');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileOverlay = document.getElementById('mobileOverlay');
+
+    // Scroll effect
+    let lastScrollY = 0;
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      nav.classList.toggle('scrolled', scrollY > 80);
+
+      // Back to top
+      const backBtn = document.getElementById('backToTop');
+      backBtn.classList.toggle('visible', scrollY > 600);
+
+      lastScrollY = scrollY;
+    }, { passive: true });
+
+    // Mobile menu
+    function openMenu() {
+      mobileMenu.classList.add('open');
+      mobileOverlay.classList.add('visible');
+      menuBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      mobileMenu.classList.remove('open');
+      mobileOverlay.classList.remove('visible');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    menuBtn.addEventListener('click', openMenu);
+    closeMenuBtn.addEventListener('click', closeMenu);
+    mobileOverlay.addEventListener('click', closeMenu);
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Active nav link
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function updateActiveNav() {
+      const scrollY = window.scrollY + 120;
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        const id = section.getAttribute('id');
+        if (scrollY >= top && scrollY < top + height) {
+          navLinks.forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+    // Back to top
+    document.getElementById('backToTop').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ==================== SCROLL REVEAL ====================
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ==================== LANGUAGE TOGGLE ====================
+    let currentLang = 'ar';
+
+    function toggleLanguage() {
+      currentLang = currentLang === 'ar' ? 'en' : 'ar';
+      const html = document.documentElement;
+      html.lang = currentLang;
+      html.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+      document.body.classList.toggle('en', currentLang === 'en');
+
+      // Update toggle buttons text
+      document.getElementById('langToggle').textContent = currentLang === 'ar' ? 'EN' : 'AR';
+      document.getElementById('langToggleMobile').textContent = currentLang === 'ar' ? 'EN' : 'AR';
+
+      // Update all translatable elements
+      document.querySelectorAll('[data-' + currentLang + ']').forEach(el => {
+        const text = el.getAttribute('data-' + currentLang);
+        if (text) el.textContent = text;
+      });
+
+      // Update placeholders
+      document.querySelectorAll('[data-' + currentLang + '-placeholder]').forEach(el => {
+        const ph = el.getAttribute('data-' + currentLang + '-placeholder');
+        if (ph) el.placeholder = ph;
+      });
+
+      // Update search placeholder
+      const searchInput = document.getElementById('stoneSearch');
+      searchInput.placeholder = currentLang === 'ar' ? 'ابحث عن حجر...' : 'Search for a stone...';
+
+      // Re-render galleries to update type labels
+      renderStones();
+      renderProjects();
+    }
+
+    document.getElementById('langToggle').addEventListener('click', toggleLanguage);
+    document.getElementById('langToggleMobile').addEventListener('click', toggleLanguage);
+
+    // ==================== PRELOADER ====================
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('preloader').classList.add('hidden');
+      }, 800);
+    });
+
+    // ==================== SMOOTH SCROLL (fallback) ====================
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
